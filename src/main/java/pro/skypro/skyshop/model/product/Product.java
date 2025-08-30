@@ -7,14 +7,17 @@ import java.util.UUID;
 
 public abstract class Product implements Searchable {
     private final UUID id;
-    protected final String name;
+    private final String name;
 
-    public Product(String name) {
+    public Product(UUID id, String name) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID cannot be null!");
+        }
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Некорректное название!");
         }
+        this.id = id;
         this.name = name;
-        this.id = UUID.randomUUID();
     }
 
     @Override

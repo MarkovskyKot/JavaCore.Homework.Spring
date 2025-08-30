@@ -11,10 +11,13 @@ public final class Article implements Searchable {
     private final String title;
     private final String text;
 
-    public Article(String title, String text) {
+    public Article(UUID id, String title, String text) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID cannot be null!");
+        }
+        this.id = id;
         this.title = title;
         this.text = text;
-        this.id = UUID.randomUUID();
 
     }
 

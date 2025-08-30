@@ -1,11 +1,13 @@
 package pro.skypro.skyshop.model.product;
 
+import java.util.UUID;
+
 public class DiscountedProduct extends Product {
     private final int basicPrice;
     private final double discount;
 
-    public DiscountedProduct(String name, int basicPrice, double discount) {
-        super(name);
+    public DiscountedProduct(UUID id, String name, int basicPrice, double discount) {
+        super(id, name);
         if (basicPrice <= 0) {
             throw new IllegalArgumentException("Неверная цена!");
         }
@@ -14,6 +16,7 @@ public class DiscountedProduct extends Product {
             throw new IllegalArgumentException("Неверная скидка!");
         }
         this.discount = discount;
+
     }
 
     public double getBasicPrice() {
@@ -31,12 +34,12 @@ public class DiscountedProduct extends Product {
 
     @Override
     public Product clone() {
-        return new DiscountedProduct(this.name, this.basicPrice, this.discount);
+        return new DiscountedProduct(this.getId(), this.getName(), this.basicPrice, this.discount);
     }
 
     @Override
     public String toString() {
-        return name + ": " + getPrice() + "₽" + " (скидка " + discount + "%)";
+        return getName() + ": " + getPrice() + "₽" + " (скидка " + discount + "%)";
     }
 
     @Override

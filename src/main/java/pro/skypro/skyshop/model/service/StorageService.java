@@ -44,20 +44,20 @@ public class StorageService {
 
     private void initializeTestData() {
         // Создаём продукты
-        Product product1 = new DiscountedProduct("Куртка", 14900, 20);
-        Product product2 = new FixPriceProduct("Набор кухонных ножей");
+        Product product1 = new DiscountedProduct(UUID.randomUUID(), "Куртка", 14900, 20);
+        Product product2 = new FixPriceProduct(UUID.randomUUID(), "Набор кухонных ножей");
 
         storageProducts.put(product1.getId(), product1);
         storageProducts.put(product2.getId(), product2);
 
         // Создаем статьи
-        Article article1 = new Article(
+        Article article1 = new Article(UUID.randomUUID(),
                 "Описание куртки",
                 "Куртка кожаная, с металлическими вставками, заклёпками, цепями, шипами. " +
                         "Самое то для поклонников тяжёлой музыки..."
         );
 
-        Article article2 = new Article(
+        Article article2 = new Article(UUID.randomUUID(),
                 "Комплектация набора",
                 "*Список ножей входящих в набор, описание, характеристики...*"
         );

@@ -1,10 +1,12 @@
 package pro.skypro.skyshop.model.product;
 
+import java.util.UUID;
+
 public class SimpleProduct extends Product {
     private final int price;
 
-    public SimpleProduct(String name, int price) {
-        super(name);
+    public SimpleProduct(UUID id, String name, int price) {
+        super(id, name);
         if (price <= 0) {
             throw new IllegalArgumentException("Неверная цена!");
         }
@@ -18,12 +20,12 @@ public class SimpleProduct extends Product {
 
     @Override
     public Product clone() {
-        return new SimpleProduct(this.name, this.price);
+        return new SimpleProduct(this.getId(), this.getName(), this.price);
     }
 
     @Override
     public String toString() {
-        return name + ": " + price + "₽";
+        return getName() + ": " + price + "₽";
     }
 
     @Override
