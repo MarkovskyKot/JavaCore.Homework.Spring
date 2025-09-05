@@ -7,10 +7,7 @@ import pro.skypro.skyshop.model.product.FixPriceProduct;
 import pro.skypro.skyshop.model.product.Product;
 import pro.skypro.skyshop.model.search.Searchable;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -40,6 +37,10 @@ public class StorageService {
                 storageProducts.values().stream(),
                 storageArticles.values().stream()
         ).collect(Collectors.toList());
+    }
+
+    public Optional<Product> getProductById(UUID id) {
+        return Optional.ofNullable(storageProducts.get(id));
     }
 
     private void initializeTestData() {
