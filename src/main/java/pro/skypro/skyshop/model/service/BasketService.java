@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pro.skypro.skyshop.model.basket.BasketItem;
 import pro.skypro.skyshop.model.basket.ProductBasket;
 import pro.skypro.skyshop.model.basket.UserBasket;
+import pro.skypro.skyshop.model.exception.NoSuchProductException;
 import pro.skypro.skyshop.model.product.Product;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class BasketService {
 
     public void addProduct(UUID id) {
         Product product = storageService.getProductById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+                .orElseThrow(() -> new NoSuchProductException("Product not found"));
         productBasket.addProduct(id);
     }
 
@@ -33,7 +34,7 @@ public class BasketService {
         List<BasketItem> items = basketItems.entrySet().stream()
                 .map(entry -> {
                     Product product = storageService.getProductById(entry.getKey())
-                            .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+                            .orElseThrow(() -> new NoSuchProductException("Product not found"));
                     return new BasketItem(product, entry.getValue());
                 })
                 .collect(Collectors.toList());
